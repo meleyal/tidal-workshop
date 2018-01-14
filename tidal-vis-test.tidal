@@ -1,0 +1,24 @@
+import Sound.Tidal.Vis
+import qualified Graphics.Rendering.Cairo as C
+import Data.Colour
+import Data.Colour.Names
+import Data.Colour.SRGB
+let draw pat = vLines (C.withSVGSurface) "Users/meleyal/Play/tidal/vis/test.svg" (600,200) pat 3 1
+
+draw $ superimpose (iter 8) $ every 2 (slow 3) $
+  every 3 (density 5) $ "[grey white black, lightgrey darkgrey]"
+
+-- draw $ superimpose (iter 8) $ every 2 (slow 3)
+-- draw $ n ("0 .. 7")
+
+
+
+import Sound.Tidal.Vis
+import Sound.Tidal.VisCycle
+import qualified Graphics.Rendering.Cairo as C
+
+let vis name pat = vLines (C.withSVGSurface) (name ++ ".svg") (600,50) pat 1 1
+
+vis "test" $ "red blue green orange"
+
+visCycle "testcycle" "" "red blue green orange"
